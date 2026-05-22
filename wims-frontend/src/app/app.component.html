@@ -1,0 +1,71 @@
+<div class="background-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+</div>
+
+<div class="layout" *ngIf="isLoggedIn$ | async; else noSidebar">
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">WIMS<span class="dot">.</span></div>
+    </div>
+    
+    <nav class="nav-menu">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <span class="icon">📊</span> Dashboard
+      </a>
+      <a routerLink="/products" routerLinkActive="active" class="nav-item">
+        <span class="icon">🛒</span> Products
+      </a>
+      <a routerLink="/categories" routerLinkActive="active" class="nav-item">
+        <span class="icon">🏷️</span> Categories
+      </a>
+      <a routerLink="/warehouses" routerLinkActive="active" class="nav-item">
+        <span class="icon">🏢</span> Warehouses
+      </a>
+      <a routerLink="/inventories" routerLinkActive="active" class="nav-item">
+        <span class="icon">📦</span> Inventories
+      </a>
+      <a routerLink="/orders" routerLinkActive="active" class="nav-item">
+        <span class="icon">📝</span> Orders
+      </a>
+      <a routerLink="/users" routerLinkActive="active" class="nav-item" *ngIf="userRole === 'ADMIN'">
+        <span class="icon">👥</span> Users
+      </a>
+      <a routerLink="/sales" routerLinkActive="active" class="nav-item">
+        <span class="icon">💰</span> Sales
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <button class="btn-logout" (click)="logout()">
+        <span class="icon">🚪</span> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="main-content">
+    <header class="topbar">
+      <div class="page-title">Warehouse & Inventory Management</div>
+      <div class="user-profile">
+        <div class="avatar">{{ userName.charAt(0).toUpperCase() }}</div>
+        <div class="user-info">
+          <div class="name" style="font-weight: 600; color: white;">{{ userName }}</div>
+          <div class="role" style="font-size: 0.8rem; color: var(--text-muted);">{{ userRole }}</div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH LAYOUT (WITHOUT SIDEBAR) -->
+<ng-template #noSidebar>
+  <main class="app-shell">
+    <router-outlet></router-outlet>
+  </main>
+</ng-template>
