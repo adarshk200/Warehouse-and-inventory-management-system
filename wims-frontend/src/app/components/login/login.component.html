@@ -1,0 +1,76 @@
+<div class="login-wrapper">
+  <div class="glass-card login-box fade-in-up">
+    
+    <!-- TABS FOR LOGIN / SIGNUP -->
+    <div class="tab-header">
+      <button class="tab-btn" [class.active]="activeTab === 'login'" (click)="activeTab = 'login'">Sign In</button>
+      <button class="tab-btn" [class.active]="activeTab === 'signup'" (click)="activeTab = 'signup'">Sign Up</button>
+    </div>
+
+    <div *ngIf="message" class="alert-msg" [class.success]="isSuccess">{{message}}</div>
+
+    <!-- LOGIN FORM -->
+    <div *ngIf="activeTab === 'login'">
+      <div class="header">
+        <h2>Welcome Back</h2>
+        <p>Login to access WIMS Terminal</p>
+      </div>
+      <form (ngSubmit)="onLogin()">
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" [(ngModel)]="loginCreds.email" name="loginEmail" required placeholder="admin@humancloud.com" autocomplete="email">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="loginCreds.password" name="loginPassword" required placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-glow">Login</button>
+      </form>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div *ngIf="activeTab === 'signup'">
+      <div class="header">
+        <h2>Create Account</h2>
+        <p>Register as administrator or manager</p>
+      </div>
+      <form *ngIf="signupState === 'form'" (ngSubmit)="onSignup()">
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" [(ngModel)]="signupCreds.name" name="signupName" required placeholder="Jane Doe" autocomplete="name">
+        </div>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" [(ngModel)]="signupCreds.email" name="signupEmail" required placeholder="jane@humancloud.com" autocomplete="email">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="signupCreds.password" name="signupPassword" required placeholder="••••••••" autocomplete="new-password">
+        </div>
+        <div class="input-group">
+          <label>System Role Rights</label>
+          <select [(ngModel)]="signupCreds.role" name="signupRole" required class="role-select">
+            <option value="ADMIN">ADMIN (System Administrator)</option>
+            <option value="WAREHOUSE_MANAGER">WAREHOUSE MANAGER (Inventory & Warehousing)</option>
+            <option value="STAFF_MANAGER">STAFF MANAGER (Operations & Staffing)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-glow">Send OTP to Email</button>
+      </form>
+      <form *ngIf="signupState === 'verify'" (ngSubmit)="onVerifyOtp()">
+        <div class="info-box">
+          <strong>OTP sent to {{ pendingSignup?.email }}</strong>
+          <p>Check your email and enter the code below to complete registration.</p>
+        </div>
+        <div class="input-group">
+          <label>Verification Code</label>
+          <input type="text" [(ngModel)]="otpCode" name="otpCode" required placeholder="Enter the OTP code">
+        </div>
+        <button type="submit" class="btn-glow">Verify Email & Register</button>
+        <button type="button" class="btn-ghost" (click)="onResendOtp()">Resend OTP</button>
+        <button type="button" class="btn-ghost" (click)="cancelSignup()">Edit Details</button>
+      </form>
+    </div>
+
+  </div>
+</div>

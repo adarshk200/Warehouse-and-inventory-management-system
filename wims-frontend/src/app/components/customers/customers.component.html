@@ -1,0 +1,86 @@
+<div class="page-section page-card fade-in-up">
+  <div class="page-header">
+    <div>
+      <h2>Customers</h2>
+      <p>Record customer accounts, shipping details, and order contacts.</p>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <h4>Total customers</h4>
+      <p>{{ customers.length }}</p>
+    </div>
+    <div class="stat-card">
+      <h4>Active contacts</h4>
+      <p>{{ customers.length ? 'Ready to sell' : 'No customers' }}</p>
+    </div>
+  </div>
+
+  <div class="toast" *ngIf="message" [class.toast-error]="isError">
+    {{ isError ? '⚠️' : '✅' }} {{ message }}
+  </div>
+
+  <form class="form-card glass-card" (ngSubmit)="createCustomer()" #customerForm="ngForm">
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Name <span class="required">*</span></label>
+        <input type="text" [(ngModel)]="newCustomer.name" name="name" required placeholder="Enter customer name" />
+        <small class="error-text" *ngIf="submitted && !newCustomer.name">Name is required</small>
+      </div>
+
+      <div class="field-group">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" [(ngModel)]="newCustomer.email" name="email" required placeholder="customer@example.com" />
+        <small class="error-text" *ngIf="submitted && !newCustomer.email">Email is required</small>
+        <small class="error-text" *ngIf="submitted && newCustomer.email && !isValidEmail(newCustomer.email)">Invalid email format</small>
+      </div>
+
+      <div class="field-group">
+        <label>Phone</label>
+        <input type="text" [(ngModel)]="newCustomer.phone" name="phone" placeholder="Enter phone number" />
+      </div>
+
+      <div class="field-group">
+        <label>Address</label>
+        <input type="text" [(ngModel)]="newCustomer.address" name="address" placeholder="Enter address" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" [disabled]="!isFormValid()">Save Customer</button>
+      <button type="button" class="btn-ghost" (click)="resetForm()">Clear</button>
+    </div>
+  </form>
+
+  <div class="glass-card table-card">
+    <h3>Customer Directory</h3>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone || '-' }}</td>
+            <td>{{ customer.address || '-' }}</td>
+            <td>
+              <button class="btn-ghost" (click)="deleteCustomer(customer.id)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="customers.length === 0">
+            <td colspan="5" class="empty-state">No customers yet. Add one above.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

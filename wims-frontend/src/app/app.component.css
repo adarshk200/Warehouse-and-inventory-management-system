@@ -1,0 +1,513 @@
+
+/* ========================================
+   app.component.css
+   CLEAN LIGHT CORPORATE / ZOHO CLASSIC STYLE
+======================================== */
+
+:host {
+    display: block;
+    min-height: 100vh;
+
+    --bg-main: #f8fafc;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --bg-hover: #f1f5f9;
+
+    --border: #e2e8f0;
+
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --primary-dark: #1d4ed8;
+
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ========================================
+   BACKGROUND DECORATIONS
+======================================== */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 40vw;
+    height: 40vw;
+    background: rgba(37, 99, 235, 0.04);
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 45vw;
+    height: 45vw;
+    background: rgba(239, 68, 68, 0.03);
+}
+
+/* ========================================
+   MAIN LAYOUT
+======================================== */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px 16px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+}
+
+/* ========================================
+   BRAND / LOGO
+======================================== */
+
+.brand {
+    padding: 0 12px 24px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+}
+
+.logo .dot {
+    color: var(--primary);
+}
+
+/* ========================================
+   NAVIGATION MENU
+======================================== */
+
+.nav-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-item .icon {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Hover State */
+.nav-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+/* Active State */
+.nav-item.active {
+    background: #eff6ff;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.btn-logout {
+    width: 100%;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background: #fef2f2;
+    color: var(--danger);
+    border-color: #fca5a5;
+}
+
+/* ========================================
+   MAIN CONTENT WRAPPER
+======================================== */
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* ========================================
+   TOPBAR
+======================================== */
+
+.topbar {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+
+.page-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* ========================================
+   USER PROFILE SECTION
+======================================== */
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+}
+
+/* Fixed: Overrides template white text colors for light view topbar profile descriptions */
+.user-info .name {
+    color: var(--text-main) !important;
+}
+
+.user-info .role {
+    color: var(--text-muted) !important;
+}
+
+/* ========================================
+   CONTENT CONTAINER
+======================================== */
+
+.content-area {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+/* DEEP CHILD COMPONENT OVERRIDES (Fixes contrast on dynamically targeted layout text views) */
+.content-area h1,
+.content-area h2,
+.content-area h3,
+.content-area h4,
+.content-area h5,
+.content-area h6,
+.content-area .page-header h2 {
+    color: var(--text-main) !important;
+}
+
+.content-area p,
+.content-area subtitle,
+.content-area .page-header p {
+    color: var(--text-muted) !important;
+}
+
+/* ========================================
+   GLOBAL CONTAINER CARDS
+======================================== */
+
+.glass-card,
+.form-card,
+.table-card,
+.summary-card,
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+/* ========================================
+   TABLE STRUCTURES & CONTRAST DEEP FIXES
+======================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+}
+
+th {
+    background: #f8fafc;
+    color: var(--text-muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+/* CRITICAL CONTRAST CORRECTION: Forces any content inside data tables to stay legible */
+td, 
+td *,
+tbody tr td,
+tbody tr td a {
+    color: var(--text-main) !important;
+}
+
+/* Retain muted color palettes for subheaders/secondary context elements within rows */
+td span,
+td small,
+td .text-muted,
+td .product-subtext {
+    color: var(--text-muted) !important;
+    font-weight: 400;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #fbfcfe;
+}
+
+/* ========================================
+   FORM INPUT ELEMENTS
+======================================== */
+
+input,
+select,
+textarea {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* ========================================
+   INTERACTIVE BUTTONS
+======================================== */
+
+.btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-ghost:hover {
+    background: var(--bg-hover);
+}
+
+/* ========================================
+   STATUS BADGES / CHIPS
+======================================== */
+
+.status-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-chip.pending,
+.status-chip.requested {
+    background: #fef3c7;
+    color: #d97706 !important;
+}
+
+.status-chip.completed,
+.status-chip.delivered {
+    background: #dcfce7;
+    color: #15803d !important;
+}
+
+.status-chip.failed,
+.status-chip.cancelled {
+    background: #fee2e2;
+    color: #b91c1c !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN BREAKPOINTS
+======================================== */
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+        max-width: 220px;
+    }
+    .topbar {
+        padding: 0 24px;
+    }
+    .content-area {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .layout {
+        position: relative;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .content-area {
+        padding: 16px;
+    }
+}
+
